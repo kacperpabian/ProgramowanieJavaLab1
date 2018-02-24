@@ -1,23 +1,23 @@
 1.Swietnie?
-0001
+D
 A_Tak
 B_Nie
 C_Moze
 D_Jak najbardziej
 2.Najlepiej?
-0010
+C
 A_Tak
 B_Nie
 C_Moze
 D_Jak najbardziej
 3.Najgorzej?
-1000
+A
 A_Tak
 B_Nie
 C_Moze
 D_Jak najbardziej
 4.Jak Pan Jezus powiedzial?
-0100
+B
 A_Tak
 B_Nie
 C_Moze
