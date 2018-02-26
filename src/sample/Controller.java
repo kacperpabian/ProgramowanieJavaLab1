@@ -8,7 +8,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Controller {
-
+/** Funkcja wywoływana po naciśnięciu przycisku. Otwiera nowe okno menu */
     public void generate (ActionEvent event) {
 
         try
