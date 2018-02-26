@@ -1,22 +1,22 @@
-1.Swietnie?
+1_Swietnie?
 D
 A_Tak
 B_Nie
 C_Moze
 D_Jak najbardziej
-2.Najlepiej?
+2_Najlepiej?
 C
 A_Tak
 B_Nie
 C_Moze
 D_Jak najbardziej
-3.Najgorzej?
+3_Najgorzej?
 A
 A_Tak
 B_Nie
 C_Moze
 D_Jak najbardziej
-4.Jak Pan Jezus powiedzial?
+4_Jak Pan Jezus powiedzial?
 B
 A_Tak
 B_Nie
