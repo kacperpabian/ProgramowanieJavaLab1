@@ -1,30 +1,52 @@
 package sample;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TreeTableView;
-import javafx.scene.layout.AnchorPane;
-import javafx.util.Pair;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import quizLib.Answers;
 import quizLib.Questions;
 import quizLib.Student;
 
-
-import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.List;
+
+
 
 public class Statistics {
 
     @FXML
-    ListView<String> listViewGrades = new ListView<>();
+    private Button buttonShowGrades;
 
-    int numberOfQuestions = 4;
+    @FXML
+    private Button showChart;
+
+    @FXML
+    private ListView<?> listViewGrades;
+
+    @FXML
+    private BarChart<?, ?> gradesChart;
+
+    @FXML
+    private Button generateStatistics;
+
+    @FXML
+    private TableView<?> tableStudentView;
+
+    @FXML
+    private Label labelAverage;
+
+    List<Student> studentsList;
+
+
+    int numberOfQuestions = 8;
 
     public int getNumberOfQuestions() {
         return numberOfQuestions;
@@ -47,7 +69,7 @@ public class Statistics {
     public void loadFiles (ActionEvent event) throws FileNotFoundException {
         List<String> szablonFile = new ArrayList<>();
         List<Questions> questions = new ArrayList<>();
-        List<Student> studentsList = new ArrayList<>();
+        studentsList = new ArrayList<>();
         HashMap<Integer, String> correctAnswers;
 
         File file = new File("Resources\\Szablon.txt");
@@ -109,14 +131,14 @@ public class Statistics {
         Answers answers = new Answers();
         for (int i = 0; i < studentAnswersTemp.size(); i++)
         {
-            if(i%5 == 0 && i !=0)
+            if(i%9 == 0 && i !=0)
             {
                 student.setAnswers(answers);
                 studentsList.add(student);
                 student = new Student();
                 answers = new Answers();
             }
-            if(i%5 == 0)
+            if(i%9 == 0)
             {
                 String[] nameSurnameIndex = studentAnswersTemp.get(i).split(";");
                 student.setName(nameSurnameIndex[0]);
@@ -134,12 +156,61 @@ public class Statistics {
         {
             int numberOfCorrectAnswers;
             numberOfCorrectAnswers = getNumberOfCorrectAnswers(correctAnswers, studentsList.get(i).getAnswers().getStudentAnswers());
-            studentsList.get(i).setGrade(getStudentGrade(numberOfCorrectAnswers));
+            double gradeTemp = getStudentGrade(numberOfCorrectAnswers);
+            studentsList.get(i).setGrade(gradeTemp);
         }
+
+        labelAverage.setText(String.valueOf(getAverage()));
+
+        showChart.setDisable(false);
 
 
     }
 
+
+    /**
+     * Wyswietl wykres
+     * @param event
+     */
+    public void getChart(ActionEvent event)
+    {
+        XYChart.Series set1 = new XYChart.Series<>();
+
+        set1.getData().add(new XYChart.Data("5.5", countGrades(5.5)));
+        set1.getData().add(new XYChart.Data("5.0", countGrades(5.0)));
+        set1.getData().add(new XYChart.Data("4.5", countGrades(4.5)));
+        set1.getData().add(new XYChart.Data("4.0", countGrades(4.0)));
+        set1.getData().add(new XYChart.Data("3.5", countGrades(3.5)));
+        set1.getData().add(new XYChart.Data("3.0", countGrades(3.0)));
+        set1.getData().add(new XYChart.Data("2.0", countGrades(2.0)));
+
+        gradesChart.getData().addAll(set1);
+    }
+
+    /**
+     * oddaj liczbę ocen
+     * @param grade
+     * @return
+     */
+    private int countGrades (double grade)
+    {
+        int gradeCounter = 0;
+        //System.out.println(studentsList.get(6).getAnswers().getStudentAnswers().values());
+        for(int i = 0; i<studentsList.size(); i++)
+        {
+            if(studentsList.get(i).getGrade() == grade)
+            {
+                gradeCounter++;
+            }
+        }
+        return gradeCounter;
+    }
+
+    /**
+     * oddaj hashmape poprawnych odpowiedzi
+     * @param questions
+     * @return
+     */
     private HashMap<Integer,String> getCorrectAnswersHash(List<Questions> questions)
     {
         HashMap<Integer, String> correctAnswers = new HashMap<>();
@@ -150,6 +221,13 @@ public class Statistics {
         }
         return correctAnswers;
     }
+
+    /**
+     * oddaj liczbę poprawnych odpowiedzi studenta
+     * @param correctAnswers
+     * @param studentAnswers
+     * @return
+     */
     private int getNumberOfCorrectAnswers(HashMap<Integer, String> correctAnswers, HashMap<Integer, String> studentAnswers)
     {
         int numberOfCorrectAnswers = 0;
@@ -159,8 +237,19 @@ public class Statistics {
                 numberOfCorrectAnswers++;
             }
         }
+
+        //System.out.println(correctAnswers.keySet() + " " + correctAnswers.values());
+        //System.out.println(numberOfCorrectAnswers);
+
+
         return numberOfCorrectAnswers;
     }
+
+    /**
+     * oddaj ocenę studenta po liczbe poprawnych
+     * @param correctAnswers
+     * @return
+     */
     private double getStudentGrade(int correctAnswers)
     {
         double gradeFactor = ((double)correctAnswers/(double)getNumberOfQuestions());
@@ -193,4 +282,25 @@ public class Statistics {
             return 5.5;
         }
     }
+
+    /**
+     * oddaj średnią
+     * @return
+     */
+    private double getAverage()
+    {
+        DecimalFormat df2 = new DecimalFormat(".##");
+        double sumGrades = 0, averageGrade;
+        for(int i =0; i < studentsList.size(); i++)
+        {
+            sumGrades+= studentsList.get(i).getGrade();
+        }
+        averageGrade = sumGrades/studentsList.size();
+        String avgrade = df2.format(averageGrade).toString();
+        avgrade = avgrade.replaceAll(",", ".");
+        System.out.println(avgrade);
+        averageGrade = Double.parseDouble(avgrade);
+        return averageGrade;
+    }
+
 }

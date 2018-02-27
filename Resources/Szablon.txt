@@ -22,3 +22,27 @@ A_Tak
 B_Nie
 C_Moze
 D_Jak najbardziej
+5_Jak Pan Jezus powiedzial?
+B
+A_Tak
+B_Nie
+C_Moze
+D_Jak najbardziej
+6_Jak Pan Jezus powiedzial?
+C
+A_Tak
+B_Nie
+C_Moze
+D_Jak najbardziej
+7_Jak Pan Jezus powiedzial?
+D
+A_Tak
+B_Nie
+C_Moze
+D_Jak najbardziej
+8_Jak Pan Jezus powiedzial?
+A
+A_Tak
+B_Nie
+C_Moze
+D_Jak najbardziej
