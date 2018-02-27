@@ -19,7 +19,7 @@ public class Controller {
 
             stage.setTitle("Statistics");
             stage.setScene(new Scene(root1));
-            stage.getIcons().add(new Image("file:Resources\\icon.png"));
+            stage.getIcons().add(new Image("file:Resources/icon.png"));
             stage.show();
         }
         catch (Exception e)

@@ -7,11 +7,15 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import quizLib.Answers;
 import quizLib.Questions;
 import quizLib.Student;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
@@ -43,10 +47,30 @@ public class Statistics {
     @FXML
     private Label labelAverage;
 
+    @FXML
+    private Button buttonChoose;
+
     List<Student> studentsList;
 
 
-    int numberOfQuestions = 8;
+    private int numberOfQuestions = 8;
+    private String templateTest="Resources/Szablon.txt", answersTest="Resources/Odpowiedzi.csv";
+
+    public String getTemplateTest() {
+        return templateTest;
+    }
+
+    public void setTemplateTest(String templateTest) {
+        this.templateTest = templateTest;
+    }
+
+    public String getAnswersTest() {
+        return answersTest;
+    }
+
+    public void setAnswersTest(String answersTest) {
+        this.answersTest = answersTest;
+    }
 
     public int getNumberOfQuestions() {
         return numberOfQuestions;
@@ -72,8 +96,10 @@ public class Statistics {
         studentsList = new ArrayList<>();
         HashMap<Integer, String> correctAnswers;
 
-        File file = new File("Resources\\Szablon.txt");
+        File file = new File(getTemplateTest());
         Scanner sc = new Scanner(file);
+
+
 
     /**
      * sczytywanie pliku do listy
@@ -114,7 +140,7 @@ public class Statistics {
 
         correctAnswers = getCorrectAnswersHash(questions);
 
-        file = new File("Resources\\Odpowiedzi.csv");
+        file = new File(getAnswersTest());
         sc = new Scanner(file);
 
         List<String> studentAnswersTemp = new ArrayList<>();
@@ -167,6 +193,25 @@ public class Statistics {
 
     }
 
+    public void chooseTemplate(ActionEvent event)
+    {
+
+        FileDialog dialog = new FileDialog((Frame)null, "Select File to Open");
+        dialog.setMode(FileDialog.LOAD);
+        dialog.setVisible(true);
+        String file = dialog.getDirectory() + dialog.getFile();
+        setTemplateTest(file);
+    }
+
+    public void chooseAnswers(ActionEvent event)
+    {
+
+        FileDialog dialog = new FileDialog((Frame)null, "Select File to Open");
+        dialog.setMode(FileDialog.LOAD);
+        dialog.setVisible(true);
+        String file = dialog.getDirectory() + dialog.getFile();
+        setAnswersTest(file);
+    }
 
     /**
      * Wyswietl wykres
@@ -186,6 +231,8 @@ public class Statistics {
 
         gradesChart.getData().addAll(set1);
     }
+
+
 
     /**
      * oddaj liczbę ocen
@@ -302,5 +349,7 @@ public class Statistics {
         averageGrade = Double.parseDouble(avgrade);
         return averageGrade;
     }
+
+
 
 }

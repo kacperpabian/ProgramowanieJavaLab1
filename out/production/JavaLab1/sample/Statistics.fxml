@@ -12,7 +12,7 @@
 
 <AnchorPane prefHeight="539.0" prefWidth="662.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Statistics">
    <children>
-      <Button fx:id="generateStatistics" layoutX="90.0" layoutY="29.0" mnemonicParsing="false" onAction="#loadFiles" prefHeight="50.0" prefWidth="148.0" text="Generuj statystyki" />
+      <Button fx:id="generateStatistics" layoutX="291.0" layoutY="29.0" mnemonicParsing="false" onAction="#loadFiles" prefHeight="50.0" prefWidth="148.0" text="Generuj statystyki" />
       <BarChart fx:id="gradesChart" animated="false" layoutY="221.0" prefHeight="311.0" prefWidth="662.0" title="Oceny">
         <xAxis>
           <CategoryAxis label="oceny" side="BOTTOM" />
@@ -21,15 +21,17 @@
           <NumberAxis label="liczba studentów" side="LEFT" />
         </yAxis>
       </BarChart>
-      <Button fx:id="showChart" disable="true" layoutX="412.0" layoutY="29.0" mnemonicParsing="false" onAction="#getChart" prefHeight="50.0" prefWidth="148.0" text="Pokaż wykres ocen" />
-      <Label fx:id="labelAverage" layoutX="114.0" layoutY="108.0" text="Tutaj będzie średnia">
+      <Button fx:id="showChart" disable="true" layoutX="482.0" layoutY="29.0" mnemonicParsing="false" onAction="#getChart" prefHeight="50.0" prefWidth="148.0" text="Pokaż wykres ocen" />
+      <Label fx:id="labelAverage" layoutX="303.0" layoutY="108.0" text="Tutaj będzie średnia">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label layoutX="14.0" layoutY="108.0" text="Średnia ocen:">
+      <Label layoutX="197.0" layoutY="108.0" text="Średnia ocen:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
+      <Button fx:id="buttonChooseAnswers" layoutX="150.0" layoutY="29.0" mnemonicParsing="false" onAction="#chooseAnswers" prefHeight="50.0" prefWidth="108.0" text="Wybierz odp." />
+      <Button fx:id="buttonChooseTemplate" layoutX="23.0" layoutY="29.0" mnemonicParsing="false" onAction="#chooseTemplate" prefHeight="50.0" prefWidth="108.0" text="Wybierz szablon" />
    </children>
 </AnchorPane>
