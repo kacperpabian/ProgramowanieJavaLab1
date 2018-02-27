@@ -6,11 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/artifacts/JavaLab1.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JavaLab1.iml" afterPath="$PROJECT_DIR$/JavaLab1.iml" />
-    </list>
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -479,7 +475,7 @@
       <workItem from="1519713612930" duration="3772000" />
       <workItem from="1519722430368" duration="75000" />
       <workItem from="1519761950580" duration="3401000" />
-      <workItem from="1519770439083" duration="559000" />
+      <workItem from="1519770439083" duration="815000" />
     </task>
     <task id="LOCAL-00001" summary="Student">
       <created>1519603667968</created>
@@ -499,7 +495,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52496000" />
+    <option name="totallyTimeSpent" value="52752000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
